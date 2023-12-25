@@ -1,5 +1,8 @@
 #pragma once
 #include "3ds.h"
+
+#include "keypad-renderer.h"
+
 #include <iostream>
 #include <map>
 #include <cstdint>
@@ -28,8 +31,14 @@ private:
 		{76, 0xF}, //V F
 	};
 
+	KeypadRenderer keypad_renderer;
+
 public:
 	Keypad() {};
+	Keypad(KeypadRenderer kr) {
+		keypad_renderer = kr;
+	};
+	
 	void handleInput();
 	bool isKeyPressed(int key);
 	bool areKeysPressed();

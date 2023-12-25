@@ -1,77 +1,6 @@
-#include "cpu.h"
+#include "chip8.h"
 
-void Cpu::loadFont() {
-    u8 fontset[] = {
-        0xF0, 0x90, 0x90, 0x90, 0xF0, // 0
-        0x20, 0x60, 0x20, 0x20, 0x70, // 1
-        0xF0, 0x10, 0xF0, 0x80, 0xF0, // 2
-        0xF0, 0x10, 0xF0, 0x10, 0xF0, // 3
-        0x90, 0x90, 0xF0, 0x10, 0x10, // 4
-        0xF0, 0x80, 0xF0, 0x10, 0xF0, // 5
-        0xF0, 0x80, 0xF0, 0x90, 0xF0, // 6
-        0xF0, 0x10, 0x20, 0x40, 0x40, // 7
-        0xF0, 0x90, 0xF0, 0x90, 0xF0, // 8
-        0xF0, 0x90, 0xF0, 0x10, 0xF0, // 9
-        0xF0, 0x90, 0xF0, 0x90, 0x90, // A
-        0xE0, 0x90, 0xE0, 0x90, 0xE0, // B
-        0xF0, 0x80, 0x80, 0x80, 0xF0, // C
-        0xE0, 0x90, 0x90, 0x90, 0xE0, // D
-        0xF0, 0x80, 0xF0, 0x80, 0xF0, // E
-        0xF0, 0x80, 0xF0, 0x80, 0x80  // F
-    };
-
-    int offset = 0;
-    for (u8 hex : fontset) {
-        memory[FONT_START_ADDRESS + offset] = hex;
-        offset++;
-    }
-    
-}
-
-void Cpu::loadROM() {
-        FILE *file = fopen("romfs:/SPACE-INVADER.ch8", "rb");
-        
-        //Get file Size
-        fseek(file, 0, SEEK_END);
-        int size = ftell(file);
-        fseek(file, 0, SEEK_SET);
-        
-        //Load file into heap memory
-        u8* buffer = new u8[size];
-        memset(buffer, 0, size);
-        fread(buffer, sizeof(u8), size, file);
-        fclose(file);
-
-        for (int i = 0; i < size; i++)
-        {
-            memory[START_ADDRESS + i] = buffer[i];
-        }
-
-        delete[] buffer;
-}
-
-void Cpu::cycle() {
-    for (int i = 0; i < speed; i++)
-    {
-        if (!isPaused)
-        {
-            opcode = memory[pc] << 8 | memory[pc + 1];
-            x = (opcode & 0x0F00) >> 8;
-            y = (opcode & 0x00F0) >> 4;
-            executeInstruction();
-        }
-    }
-
-    if (!isPaused)
-    {
-        updateTimers();
-    }
-
-    playSound();
-    renderer.render();
-}
-
-void Cpu::executeInstruction() {
+void Chip8::executeInstruction() {
     pc += 2;
 
     switch (opcode & 0xF000) {
@@ -225,41 +154,22 @@ void Cpu::executeInstruction() {
     }
 }
 
-
-void Cpu::updateTimers() {
-    if (delayTimer > 0)
-        delayTimer -= 1;
-
-    if (soundTimer > 0)
-        soundTimer -= 1;
+void Chip8::OP_00E0() {
+    top_renderer.clear();
 }
 
-void Cpu::playSound() {
-
-}
-
-
-
-u8 Cpu::getRandomByte() {
-    return rand() % 255 + 1;
-}
-
-void Cpu::OP_00E0() {
-    renderer.clear();
-}
-
-void Cpu::OP_00EE()//
+void Chip8::OP_00EE()//
 {
     stkpt--;
     pc = stack[stkpt];
 }
 
-void Cpu::OP_1nnn()
+void Chip8::OP_1nnn()
 {
     pc = (opcode & 0xFFF);
 }
 
-void Cpu::OP_2nnn() //
+void Chip8::OP_2nnn() //
 {
     stack[stkpt] = pc;
     stkpt++;
@@ -267,48 +177,48 @@ void Cpu::OP_2nnn() //
     pc = (opcode & 0xFFF);
 }
 
-void Cpu::OP_3xkk() {
+void Chip8::OP_3xkk() {
     if (v[x] == (opcode & 0xFF))
         pc += 2;
 }
 
-void Cpu::OP_4xkk() {
+void Chip8::OP_4xkk() {
     if (v[x] != (opcode & 0xFF))
         pc += 2;
 }
 
-void Cpu::OP_5xy0() {
+void Chip8::OP_5xy0() {
     if (v[x] == v[y])
         pc += 2;
 }
 
-void Cpu::OP_6xkk()
+void Chip8::OP_6xkk()
 {
     v[x] = (opcode & 0xFF);
 }
 
-void Cpu::OP_7xkk()
+void Chip8::OP_7xkk()
 {
     v[x] += (opcode & 0xFF);
 }
 
-void Cpu::OP_8xy0() {
+void Chip8::OP_8xy0() {
     v[x] = v[y];
 }
 
-void Cpu::OP_8xy1(){
+void Chip8::OP_8xy1(){
     v[x] |= v[y];
 }
 
-void Cpu::OP_8xy2() {
+void Chip8::OP_8xy2() {
     v[x] &= v[y];
 }
 
-void Cpu::OP_8xy3() {
+void Chip8::OP_8xy3() {
     v[x] ^= v[y];
 }
 
-void Cpu::OP_8xy4() {
+void Chip8::OP_8xy4() {
     u16 sum = v[x] + v[y];
 
     v[0xF] = 0;
@@ -319,7 +229,7 @@ void Cpu::OP_8xy4() {
     v[x] = sum & 0xFF;
 }
 
-void Cpu::OP_8xy5() {
+void Chip8::OP_8xy5() {
     v[0xF] = 0;
 
     if (v[x] > v[y])
@@ -328,13 +238,13 @@ void Cpu::OP_8xy5() {
     v[x] -= v[y];
 }
 
-void Cpu::OP_8xy6() {
+void Chip8::OP_8xy6() {
     v[0xF] = (v[x] & 0x1);
 
     v[x] >>= 1;
 }
 
-void Cpu::OP_8xy7() {
+void Chip8::OP_8xy7() {
     v[0xF] = 0;       
 
     if (v[y] > v[x])
@@ -343,31 +253,31 @@ void Cpu::OP_8xy7() {
     v[x] = v[y] - v[x];
 }
 
-void Cpu::OP_8xyE() {
+void Chip8::OP_8xyE() {
     v[0xF] = (v[x] & 0x80);
     v[x] <<= 1;
 }
 
-void Cpu::OP_9xy0() {
+void Chip8::OP_9xy0() {
     if (v[x] != v[y])
         pc += 2;
 }
 
-void Cpu::OP_Annn()
+void Chip8::OP_Annn()
 {
     i = (opcode & 0xFFF);
 }
 
-void Cpu::OP_Bnnn() {
+void Chip8::OP_Bnnn() {
     pc = (opcode & 0xFFF) + v[0x0];
 }
 
-void Cpu::OP_Cxkk() {
+void Chip8::OP_Cxkk() {
     u8 byte = opcode & 0xFF;
     v[x] = getRandomByte() & byte;
 }
 
-void Cpu::OP_Dxyn()
+void Chip8::OP_Dxyn()
 {
     int width = 8;
     int height = (opcode & 0xF);
@@ -383,7 +293,7 @@ void Cpu::OP_Dxyn()
             if ((sprite & 0x80) > 0)
             {
                 
-                if (renderer.setPixel(v[x] + col, v[y] + row))
+                if (top_renderer.setPixel(v[x] + col, v[y] + row))
                     v[0xF] = 1;
             }
 
@@ -392,55 +302,55 @@ void Cpu::OP_Dxyn()
     }
 }
 
-void Cpu::OP_Ex9E() {
+void Chip8::OP_Ex9E() {
     if (keypad.isKeyPressed(v[x]))
         pc += 2;
 }
 
-void Cpu::OP_ExA1(){
+void Chip8::OP_ExA1(){
     if (!keypad.isKeyPressed(v[x]))
         pc += 2;
 }
 
-void Cpu::OP_Fx07() {
+void Chip8::OP_Fx07() {
     v[x] = delayTimer;
 }
 
-void Cpu::OP_Fx0A() {
+void Chip8::OP_Fx0A() {
     if (keypad.areKeysPressed())
         v[x] = keypad.getFirstKey();
     else
         pc -= 2;
 }
 
-void Cpu::OP_Fx15() {
+void Chip8::OP_Fx15() {
     delayTimer = v[x];
 }
 
-void Cpu::OP_Fx18() {
+void Chip8::OP_Fx18() {
     soundTimer = v[x];
 }
 
-void Cpu::OP_Fx1E() {
+void Chip8::OP_Fx1E() {
     i += v[x];
 }
 
-void Cpu::OP_Fx29() {
+void Chip8::OP_Fx29() {
     i = 5 * v[x];
 }
 
-void Cpu::OP_Fx33() {
+void Chip8::OP_Fx33() {
     memory[i] = v[x] / 100; //Hundereds
     memory[i + 1] = (v[x] % 100 ) / 10; //Tens
     memory[i + 2] = v[x] % 10; //Ones
 }
 
-void Cpu::OP_Fx55() {
+void Chip8::OP_Fx55() {
     for (int registerIndex = 0; registerIndex <= x; registerIndex++)
         memory[i + registerIndex] = v[registerIndex];
 }
 
-void Cpu::OP_Fx65() {
+void Chip8::OP_Fx65() {
     for (int registerIndex = 0; registerIndex <= x; registerIndex++)
         v[registerIndex] = memory[i + registerIndex];
 }

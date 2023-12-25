@@ -2,10 +2,7 @@
 #include <3ds.h>
 #include <citro2d.h>
 
-#include "cpu.h"
-#include "keypad.h"
-#include "top-renderer.h"
-#include "speaker.h"
+#include "chip8.h"
 
 #include <string.h>
 #include <stdio.h>
@@ -30,14 +27,11 @@ int main(int argc, char* argv[]) {
 	C3D_RenderTarget* bottom = C2D_CreateScreenTarget(GFX_BOTTOM, GFX_LEFT);
 
 	//Create Objects
-	Keypad keypad;
-	TopRenderer renderer(top);
-	Speaker speaker;
-	Cpu cpu(renderer, keypad, speaker);
+	Chip8 chip8(top, bottom);
 
 	//load rom into memory
-	cpu.loadFont();
-	cpu.loadROM();
+	chip8.loadFont();
+	chip8.loadROM();
 
 	u32 clrWhite = C2D_Color32(0xFF, 0xFF, 0xFF, 0xFF);
 	u32 clrBlack = C2D_Color32(0x00, 0x00, 0x00, 0xFF);
@@ -57,13 +51,10 @@ int main(int argc, char* argv[]) {
 		C3D_FrameBegin(C3D_FRAME_SYNCDRAW);
 
 		//Cycle the Cpu
-		keypad.handleInput();
-		cpu.cycle();
+		chip8.cycle();
 
 		//Draw the Bottom Screen
-		C2D_TargetClear(bottom, clrWhite);
-		C2D_SceneBegin(bottom);
-		C2D_DrawRectSolid(20,30,0,100,60,clrBlack);
+		
 
 
 		C3D_FrameEnd(0);
