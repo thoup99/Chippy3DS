@@ -65,11 +65,12 @@ private:
 	void OP_Fx65();
 
 public:
+	Cpu () {};
 	Cpu(TopRenderer r, Keypad k, Speaker s) {
         renderer = r;
         keypad = k;
         speaker = s;
-    }
+    };
 
 	void loadFont();
 	void loadROM();
