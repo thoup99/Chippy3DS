@@ -1,5 +1,6 @@
-keypad.o: C:/Users/thoup/Desktop/Chippy3DS/source/keypad.cpp \
- C:/Users/thoup/Desktop/Chippy3DS/include/keypad.h \
+chip8-instructions.o: \
+ C:/Users/thoup/Desktop/Chippy3DS/source/chip8-instructions.cpp \
+ C:/Users/thoup/Desktop/Chippy3DS/include/chip8.h \
  C:/devkitPro/libctru/include/3ds.h \
  C:/devkitPro/libctru/include/3ds/types.h \
  C:/devkitPro/libctru/include/3ds/result.h \
@@ -84,7 +85,6 @@ keypad.o: C:/Users/thoup/Desktop/Chippy3DS/source/keypad.cpp \
  C:/devkitPro/libctru/include/3ds/font.h \
  C:/devkitPro/libctru/include/3ds/gdbhio_dev.h \
  C:/devkitPro/libctru/include/3ds/3dslink.h \
- C:/Users/thoup/Desktop/Chippy3DS/include/keypad-renderer.h \
  C:/devkitPro/libctru/include/citro2d.h \
  C:/devkitPro/libctru/include/citro3d.h \
  C:/devkitPro/libctru/include/c3d/types.h \
@@ -108,8 +108,12 @@ keypad.o: C:/Users/thoup/Desktop/Chippy3DS/source/keypad.cpp \
  C:/devkitPro/libctru/include/c2d/spritesheet.h \
  C:/devkitPro/libctru/include/c2d/sprite.h \
  C:/devkitPro/libctru/include/c2d/text.h \
- C:/devkitPro/libctru/include/c2d/font.h
-C:/Users/thoup/Desktop/Chippy3DS/include/keypad.h:
+ C:/devkitPro/libctru/include/c2d/font.h \
+ C:/Users/thoup/Desktop/Chippy3DS/include/keypad-renderer.h \
+ C:/Users/thoup/Desktop/Chippy3DS/include/keypad.h \
+ C:/Users/thoup/Desktop/Chippy3DS/include/top-renderer.h \
+ C:/Users/thoup/Desktop/Chippy3DS/include/speaker.h
+C:/Users/thoup/Desktop/Chippy3DS/include/chip8.h:
 C:/devkitPro/libctru/include/3ds.h:
 C:/devkitPro/libctru/include/3ds/types.h:
 C:/devkitPro/libctru/include/3ds/result.h:
@@ -194,7 +198,6 @@ C:/devkitPro/libctru/include/3ds/romfs.h:
 C:/devkitPro/libctru/include/3ds/font.h:
 C:/devkitPro/libctru/include/3ds/gdbhio_dev.h:
 C:/devkitPro/libctru/include/3ds/3dslink.h:
-C:/Users/thoup/Desktop/Chippy3DS/include/keypad-renderer.h:
 C:/devkitPro/libctru/include/citro2d.h:
 C:/devkitPro/libctru/include/citro3d.h:
 C:/devkitPro/libctru/include/c3d/types.h:
@@ -219,3 +222,7 @@ C:/devkitPro/libctru/include/c2d/spritesheet.h:
 C:/devkitPro/libctru/include/c2d/sprite.h:
 C:/devkitPro/libctru/include/c2d/text.h:
 C:/devkitPro/libctru/include/c2d/font.h:
+C:/Users/thoup/Desktop/Chippy3DS/include/keypad-renderer.h:
+C:/Users/thoup/Desktop/Chippy3DS/include/keypad.h:
+C:/Users/thoup/Desktop/Chippy3DS/include/top-renderer.h:
+C:/Users/thoup/Desktop/Chippy3DS/include/speaker.h:

@@ -107,9 +107,10 @@ main.o: C:/Users/thoup/Desktop/Chippy3DS/source/main.cpp \
  C:/devkitPro/libctru/include/c2d/sprite.h \
  C:/devkitPro/libctru/include/c2d/text.h \
  C:/devkitPro/libctru/include/c2d/font.h \
- C:/Users/thoup/Desktop/Chippy3DS/include/cpu.h \
- C:/Users/thoup/Desktop/Chippy3DS/include/top-renderer.h \
+ C:/Users/thoup/Desktop/Chippy3DS/include/chip8.h \
+ C:/Users/thoup/Desktop/Chippy3DS/include/keypad-renderer.h \
  C:/Users/thoup/Desktop/Chippy3DS/include/keypad.h \
+ C:/Users/thoup/Desktop/Chippy3DS/include/top-renderer.h \
  C:/Users/thoup/Desktop/Chippy3DS/include/speaker.h
 C:/devkitPro/libctru/include/3ds.h:
 C:/devkitPro/libctru/include/3ds/types.h:
@@ -219,7 +220,8 @@ C:/devkitPro/libctru/include/c2d/spritesheet.h:
 C:/devkitPro/libctru/include/c2d/sprite.h:
 C:/devkitPro/libctru/include/c2d/text.h:
 C:/devkitPro/libctru/include/c2d/font.h:
-C:/Users/thoup/Desktop/Chippy3DS/include/cpu.h:
-C:/Users/thoup/Desktop/Chippy3DS/include/top-renderer.h:
+C:/Users/thoup/Desktop/Chippy3DS/include/chip8.h:
+C:/Users/thoup/Desktop/Chippy3DS/include/keypad-renderer.h:
 C:/Users/thoup/Desktop/Chippy3DS/include/keypad.h:
+C:/Users/thoup/Desktop/Chippy3DS/include/top-renderer.h:
 C:/Users/thoup/Desktop/Chippy3DS/include/speaker.h:
