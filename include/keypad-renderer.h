@@ -11,11 +11,15 @@ private:
 	u32 clrBlack = C2D_Color32(0x00, 0x00, 0x00, 0xFF);
 	u32 clrBoarder = C2D_Color32(0x17, 0x17, 0x17, 0xFF);
 
+    C2D_TextBuf g_staticBuf;
+    C2D_Text g_staticText;
+
 public:
     KeypadRenderer() {};
     KeypadRenderer(C3D_RenderTarget* s) {
 		screen = s;
 	};
 
+    void initText();
     void render();
 };

@@ -74,6 +74,8 @@ public:
         top_renderer = TopRenderer(top);
         keypad_renderer = KeypadRenderer(bottom);
         keypad = Keypad(keypad_renderer);
+
+		keypad_renderer.initText();
     };
 
     void loadFont();
