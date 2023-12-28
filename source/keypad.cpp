@@ -10,6 +10,9 @@ void Keypad::handleInput()
 
 	int x = touch.px;
 	int y = touch.py;
+
+	//Determine which button is being pressed (if any) and pass it to the renderer
+	
 }
 
 bool Keypad::isKeyPressed(int key) {
