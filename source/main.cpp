@@ -33,9 +33,6 @@ int main(int argc, char* argv[]) {
 	chip8.loadFont();
 	chip8.loadROM();
 
-	u32 clrWhite = C2D_Color32(0xFF, 0xFF, 0xFF, 0xFF);
-	u32 clrBlack = C2D_Color32(0x00, 0x00, 0x00, 0xFF);
-
 	// Main loop
 	while (aptMainLoop())
 	{
