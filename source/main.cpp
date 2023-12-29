@@ -42,6 +42,7 @@ int main(int argc, char* argv[]) {
 		u32 kDown = hidKeysDown();
 		if (kDown & KEY_START)
 			break; // break in order to return to hbmenu
+		chip8.handleInput(kDown);
 
 
 		//Begin Drawing to Screens
@@ -49,9 +50,6 @@ int main(int argc, char* argv[]) {
 
 		//Cycle the Cpu
 		chip8.cycle();
-
-		//Draw the Bottom Screen
-		
 
 
 		C3D_FrameEnd(0);

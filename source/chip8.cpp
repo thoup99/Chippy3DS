@@ -29,7 +29,7 @@ void Chip8::loadFont() {
 }
 
 void Chip8::loadROM() {
-        FILE *file = fopen("romfs:/SPACE-INVADER.ch8", "rb");
+        FILE *file = fopen("romfs:/KeypadTest.ch8", "rb");
         
         //Get file Size
         fseek(file, 0, SEEK_END);
@@ -65,9 +65,9 @@ void Chip8::cycle() {
     if (!isPaused)
     {
         updateTimers();
+        playSound();
     }
-
-    playSound();
+    
     top_renderer.render();
     keypad_renderer.render();
 }
@@ -84,7 +84,12 @@ void Chip8::playSound() {
 
 }
 
-
+void Chip8::handleInput(u32 keys_down) {
+    if (keys_down & KEY_Y)
+        isPaused = !isPaused;
+    if (keys_down & KEY_TOUCH)
+        keypad.handleTouchInput();
+}
 
 u8 Chip8::getRandomByte() {
     return rand() % 255 + 1;

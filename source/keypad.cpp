@@ -1,7 +1,7 @@
 #include "keypad.h"
 
 
-void Keypad::handleInput()
+void Keypad::handleTouchInput()
 {
 	touchPosition touch;
 

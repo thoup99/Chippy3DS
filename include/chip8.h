@@ -84,4 +84,5 @@ public:
 	void executeInstruction();
 	void updateTimers();
 	void playSound();
+	void handleInput(u32 keys_down);
 };

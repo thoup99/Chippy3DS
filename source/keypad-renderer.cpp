@@ -13,7 +13,7 @@ void KeypadRenderer::loadPositions() {
 
 void KeypadRenderer::initText() {
     g_staticBuf = C2D_TextBufNew(4096);
-    C2D_TextParse(&controlText, g_staticBuf, "(Y) - Pause");
+    C2D_TextParse(&controlText, g_staticBuf, "(Y) - Pause     (X) - Open ROM Browser");
     C2D_TextOptimize(&controlText);
 
     const char* text[] = {
