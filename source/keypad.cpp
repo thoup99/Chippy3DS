@@ -16,7 +16,7 @@ void Keypad::handleTouchInput()
 }
 
 bool Keypad::isKeyPressed(int key) {
-	return keys[KEY_MAPPINGS[key]] == 1;
+	return keys[key] == 1;
 }
 
 bool Keypad::areKeysPressed() {
@@ -30,16 +30,13 @@ bool Keypad::areKeysPressed() {
 
 void Keypad::changeKeyState(int key)
 {
-	if (KEY_MAPPINGS.find(key) != KEY_MAPPINGS.end())
-	{
-		keys[KEY_MAPPINGS[key]] ^= 1;
-	}
+	keys[key] ^= 1;
 }
 
 int Keypad::getFirstKey() {
 	for (int i = 0; i < 16; i++) {
 		if (keys[i] == 1)
-			return i + 1;
+			return i;
 	}
 	return 0x0;
 }
