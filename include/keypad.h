@@ -6,7 +6,8 @@
 
 class Keypad {
 private:
-	int keys[16] = {};
+	bool keys[16] = {};
+	bool is_being_pressed = false;
 
 	KeypadRenderer keypad_renderer;
 
@@ -15,10 +16,14 @@ public:
 	Keypad(KeypadRenderer kr) {
 		keypad_renderer = kr;
 	};
+
+	bool isPressed();
 	
 	void handleTouchInput();
+	void handleTouchStop();
 	bool isKeyPressed(int key);
 	bool areKeysPressed();
+	void SetKeyState(int key, bool state);
 	void changeKeyState(int key);
 	int getFirstKey();
 };

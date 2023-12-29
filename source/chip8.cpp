@@ -29,7 +29,7 @@ void Chip8::loadFont() {
 }
 
 void Chip8::loadROM() {
-        FILE *file = fopen("romfs:/KeypadTest.ch8", "rb");
+        FILE *file = fopen("romfs:/Tetris.ch8", "rb");
         
         //Get file Size
         fseek(file, 0, SEEK_END);
@@ -89,6 +89,8 @@ void Chip8::handleInput(u32 keys_down) {
         isPaused = !isPaused;
     if (keys_down & KEY_TOUCH)
         keypad.handleTouchInput();
+    else if (keypad.isPressed())
+        keypad.handleTouchStop();
 }
 
 u8 Chip8::getRandomByte() {
