@@ -1,26 +1,24 @@
 #pragma once
 #include "3ds.h"
 
-#include "keypad-renderer.h"
-
 
 class Keypad {
 private:
 	bool keys[16] = {};
 	bool is_being_pressed = false;
 
-	KeypadRenderer keypad_renderer;
+	int x_pos;
+	int y_pos;
 
 public:
 	Keypad() {};
-	Keypad(KeypadRenderer kr) {
-		keypad_renderer = kr;
-	};
 
 	bool isPressed();
+	int getXPos() {return x_pos;}
+	int getYPos() {return y_pos;}
 	
 	void handleTouchInput();
-	void handleTouchStop();
+	void TouchStopped();
 	bool isKeyPressed(int key);
 	bool areKeysPressed();
 	void SetKeyState(int key, bool state);

@@ -3,29 +3,32 @@
 
 void Keypad::handleTouchInput()
 {
-	is_being_pressed = true;
 
 	touchPosition touch;
 
 	//Read the touch screen coordinates
 	hidTouchRead(&touch);
 
-	int x = touch.px;
-	int y = touch.py;
-
 	//Determine which button is being pressed (if any) and pass it to the renderer
-	int x_pos = x / 80;
-	int y_pos = y / 55;
+	x_pos = touch.px / 80;
+	y_pos = touch.py / 55;
 
-	//If y > 3 then the input is happening below the keypad and should be ignored
-	if (y > 3) {
+	if ((touch.px == 0 && touch.py == 0) || y_pos > 3) {
+		if (is_being_pressed) {
+			is_being_pressed = false;
+			TouchStopped();
+		}
+
+	} else {
+		//Input is on the keypad
+		is_being_pressed = true;
 		int button_pressed = (y_pos * 4 + x_pos);
 	 	SetKeyState(button_pressed, true);
 	}
 	
 }
 
-void Keypad::handleTouchStop() {
+void Keypad::TouchStopped() {
 	is_being_pressed = false;
 
 	for (bool &k : keys)

@@ -87,10 +87,7 @@ void Chip8::playSound() {
 void Chip8::handleInput(u32 keys_down) {
     if (keys_down & KEY_Y)
         isPaused = !isPaused;
-    if (keys_down & KEY_TOUCH)
-        keypad.handleTouchInput();
-    else if (keypad.isPressed())
-        keypad.handleTouchStop();
+    keypad.handleTouchInput();
 }
 
 u8 Chip8::getRandomByte() {

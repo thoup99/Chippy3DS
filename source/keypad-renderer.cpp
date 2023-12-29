@@ -44,7 +44,9 @@ void KeypadRenderer::drawControls() {
 }
 
 void KeypadRenderer::highlightPressed() {
-
+    if (keypad->isPressed() && keypad->getYPos() <= 3) {
+        C2D_DrawRectSolid(keypad->getXPos() * COLUMN_WIDTH, keypad->getYPos() * ROW_HEIGHT, 0, COLUMN_WIDTH, ROW_HEIGHT, clrHighlight);
+    }
 }
 
 void KeypadRenderer::drawBorder() {

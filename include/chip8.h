@@ -10,8 +10,8 @@
 
 class Chip8 {
 private:
+	Keypad keypad;
     KeypadRenderer keypad_renderer;
-    Keypad keypad;
     TopRenderer top_renderer;
     Speaker speaker;
     
@@ -72,8 +72,7 @@ private:
 public:
     Chip8 (C3D_RenderTarget* top, C3D_RenderTarget* bottom) {
         top_renderer = TopRenderer(top);
-        keypad_renderer = KeypadRenderer(bottom);
-        keypad = Keypad(keypad_renderer);
+        keypad_renderer = KeypadRenderer(bottom, &keypad);
 
 		keypad_renderer.initText();
     };
