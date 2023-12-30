@@ -29,7 +29,7 @@ void Chip8::loadFont() {
 }
 
 void Chip8::loadROM() {
-        FILE *file = fopen("romfs:/Tetris.ch8", "rb");
+        FILE *file = fopen("romfs:/SPACE-INVADER.ch8", "rb");
         
         //Get file Size
         fseek(file, 0, SEEK_END);

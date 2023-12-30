@@ -14,8 +14,8 @@ void Chip8::executeInstruction() {
                     OP_00EE();
                     break;
             }
-
             break;
+
         case 0x1000:
             OP_1nnn();
             break;
@@ -84,6 +84,7 @@ void Chip8::executeInstruction() {
             }
 
             break;
+
         case 0x9000:
             OP_9xy0();
             break;
@@ -97,7 +98,9 @@ void Chip8::executeInstruction() {
             break;
 
         case 0xC000:
+            OP_Cxkk();
             break;
+
         case 0xD000:
             OP_Dxyn();
             break;
@@ -117,7 +120,9 @@ void Chip8::executeInstruction() {
         case 0xF000:
             switch (opcode & 0xFF) {
                 case 0x07:
+                    OP_Fx07();
                     break;
+                    
                 case 0x0A:
                     OP_Fx0A();
                     break;
