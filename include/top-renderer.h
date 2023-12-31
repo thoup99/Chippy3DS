@@ -13,10 +13,6 @@ private:
 	int display_width = 384;
 	int display_height = 192;
 
-	int cols = 64;
-	int rows = 32;
-	short display [64 * 32] = {};
-
     u32 clrWhite = C2D_Color32(0xFF, 0xFF, 0xFF, 0xFF);
 	u32 clrBlack = C2D_Color32(0x00, 0x00, 0x00, 0xFF);
 	u32 clrBoarder = C2D_Color32(0x17, 0x17, 0x17, 0xFF);
@@ -29,7 +25,10 @@ public:
 		screen = s;
 	};
 
+	static const int WIDTH = 64;
+	static const int HEIGHT = 32;
+	bool display [64 * 32] = {};
+
 	void clear();
-	bool setPixel(int x, int y);
 	void render();
 };

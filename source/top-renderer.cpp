@@ -8,24 +8,6 @@ void TopRenderer::clear() {
 	}
 }
 
-bool TopRenderer::setPixel(int x, int y) {
-	if (x > cols)
-		x -= cols;
-	else if (x < 0)
-		x += cols;
-
-	if (y > rows)
-		y -= rows;
-	else if (y < 0)
-		y += rows;
-
-	int pixelLocation = y * 64 + x;
-
-	display[pixelLocation] ^= 1;
-
-	return display[pixelLocation];
-}
-
 void TopRenderer::render() {
 	// Render the scene
     C2D_TargetClear(screen, clrBlack);

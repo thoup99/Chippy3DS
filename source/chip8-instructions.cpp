@@ -284,25 +284,34 @@ void Chip8::OP_Cxkk() {
 
 void Chip8::OP_Dxyn()
 {
-    int width = 8;
-    int height = (opcode & 0xF);
+    //I could not have gotten this without help from Austin Morlan's guide
+    //The code below is a slightly modified version of what is used in his chip-8 emulator
+    
+    int height = (opcode & 0x000F);
 
     v[0xF] = 0;
 
-    for (int row = 0; row < height; row++)
+    u8 xPos = v[x] % top_renderer.WIDTH;
+    u8 yPos = v[y] % top_renderer.HEIGHT;
+
+    for (int row = 0; row < height; ++row)
     {
-        u8 sprite = memory[i + row];
+        u8 sprite_byte = memory[i + row];
 
-        for (int col = 0; col < width; col++)
+        for (int col = 0; col < 8; ++col)
         {
-            if ((sprite & 0x80) > 0)
-            {
-                
-                if (top_renderer.setPixel(v[x] + col, v[y] + row))
-                    v[0xF] = 1;
-            }
+            u8 sprite_pixel = sprite_byte & (0x80 >> col);
+            bool* screen_pixel = &top_renderer.display[(yPos + row) * top_renderer.WIDTH + (xPos + col)];
 
-            sprite <<= 1;
+            if (sprite_pixel)
+            {
+                if (*screen_pixel)
+                {
+                    v[0xF] = 1;
+                }
+
+                *screen_pixel ^= 1;
+            }
         }        
     }
 }
