@@ -2,7 +2,7 @@
 Chippy3DS is a Chip-8 Emulator built specifically for the Nintendo 3DS.
 
 # Demo
-A demo video of the program running can be found [here]([https://youtu.be/QIWP4U0M3ZQ](https://youtu.be/d48lGP5Azew)). This footage was captured using the Citra 3DS Emulator.
+A demo video of the program running can be found [here](https://youtu.be/d48lGP5Azew). This footage was captured using the Citra 3DS Emulator.
 
 Installation on 3DS
 ===================
