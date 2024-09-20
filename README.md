@@ -14,6 +14,10 @@ Running on 3DS
 ===============
 After completing the installation, turn on your 3DS and navigate to the homebrew launcher. Locate the Chippy3DS file and press __`A`__ to run it.
 
+Controls
+========
+Chip-8 roms are played using a 4x4 keypad. This keypad has been built into the bottom touch screen of the 3DS and will work with any provided rom. The "Y" button can also be pressed to pause emulation. The "X" button is planned to open the file browser whenever it gets implimented.
+
 NOTICE
 ======
 This is a demo version of the emulator that is not finished. Most Roms will run with perfection, but since there is no file browser built in yet, you will only be able to play whatever rom is baked into the Chippy3DS.3dsx file. Getting a file browser implimented is something that I would like to do in the near future so the emulator can be easier to use.
