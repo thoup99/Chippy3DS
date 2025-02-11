@@ -6,7 +6,7 @@ A demo video of the program running can be found [here](https://youtu.be/d48lGP5
 
 Installation on 3DS
 ===================
-A modded 3ds console is needed to run this program. If you 3ds is not already modded please follow the guide at https://3ds.hacks.guide/. Please do not follow video tutorials as many of them are outdated.
+A modded 3ds console is needed to run this program. If your 3ds is not already modded please follow the guide at https://3ds.hacks.guide/. Please do not follow video tutorials as many of them are outdated.
 
 Remove the SD card from your 3DS while it is powered off and connect it to your computer. Locate the __`3ds`__ folder on the root of your SD card and drag and drop the __`Chippy3DS.3dsx`__ file into it. This file can be retrieved from the root of this projects github page.
 
